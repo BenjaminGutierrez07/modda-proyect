@@ -11,17 +11,24 @@ function onScanError(error) {
     console.error(`Error scanning QR code: ${error}`);
 }
 
-// Inicializar el lector con los callbacks de éxito y error
-const qrReader = new Html5Qrcode("qr-reader");
-qrReader.start(
-    { facingMode: "environment" }, // Cámara trasera del dispositivo
-    {
-        fps: 10, // Frames por segundo
-        qrbox: { width: 250, height: 250 } // Tamaño del área de escaneo
-    },
-    onScanSuccess,
-    onScanError
-).catch(err => {
-    console.error(`Unable to start QR scanner: ${err}`);
-    document.getElementById('result-data').textContent = "Unable to access the camera.";
-});
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    console.log("La cámara está disponible. Intentando iniciar el escáner.");
+
+    // Inicializar el lector QR solo si se obtiene acceso a la cámara
+    const qrReader = new Html5Qrcode("qr-reader");
+    qrReader.start(
+        { facingMode: "environment" }, // Usar la cámara trasera
+        {
+            fps: 10, // Frames por segundo
+            qrbox: { width: 250, height: 250 } // Tamaño del área de escaneo
+        },
+        onScanSuccess,
+        onScanError
+    ).catch(err => {
+        console.error(`Unable to start QR scanner: ${err}`);
+        document.getElementById('result-data').textContent = "Unable to access the camera.";
+    });
+} else {
+    console.error("El navegador no soporta el acceso a la cámara.");
+    document.getElementById('result-data').textContent = "Camera access is not supported.";
+}
