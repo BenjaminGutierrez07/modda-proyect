@@ -14,7 +14,7 @@ function onScanError(error) {
 // Inicializar el lector con los callbacks de éxito y error
 const qrReader = new Html5Qrcode("qr-reader");
 qrReader.start(
-    { facingMode: "enviroment" }, // Cámara trasera del dispositivo
+    { facingMode: "environment" }, // Cámara trasera del dispositivo
     {
         fps: 10, // Frames por segundo
         qrbox: { width: 250, height: 250 } // Tamaño del área de escaneo
