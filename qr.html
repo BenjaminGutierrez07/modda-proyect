@@ -20,19 +20,15 @@
         <div id="reader"></div>
         <div id="scan-result" class="text-center mt-3"></div>
     </div>
-
     <script>
-         function onScanSuccess(decodedText, decodedResult) {
-            console.log(`Scan result: ${decodedText}`);
-            // Redirect to sales.html with the scanned code as a query parameter
-            window.location.href = `sales.html?code=${encodeURIComponent(decodedText)}`;
-        }
         // Create a new instance of the Html5Qrcode class
         const html5Qrcode = new Html5Qrcode("reader");
 
         // Define a function to handle the QR code scan result
         function onScanSuccess(decodedText, decodedResult) {
-            console.log(`Scan result: ${decodedText}`);
+            console.log(`Scan result: ${decodedText}`)  ;
+            localStorage.setItem("qrCode", decodedText);
+            window.location.href = 'sales.html';
             // Display the scan result on your web page
             document.getElementById("scan-result").innerHTML = `Scanned Result: ${decodedText}`;
         }

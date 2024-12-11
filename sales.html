@@ -8,78 +8,63 @@
     <script src="login.js" defer></script>
 </head>
 <body>
-        <div class="centralbox">
-            <div class="info">
-                <h2 class="current">Working: <span id="current-user">Loading...</span></h2>
-                <div class="botones">
-                    <button>REGISTER</button>
-                    <button>CLEAR</button>
-                    <button>MANUAL</button>
-                </div>
+    <div class="centralbox">
+        <div class="info">
+            <h2 class="current">Working: <span id="current-user">Loading...</span></h2>
+            <div class="botones">
+                <button>REGISTER</button>
+                <button>CLEAR</button>
+                <button>MANUAL</button>
             </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Fecha</th>
-                        <th>Modelo</th>
-                        <th>Talla</th>
-                        <th>Precio</th>
-                    </tr>
-                </thead>
-                <tbody id="data-body">
-                    <tr>
-                        <td>2024-12-10</td>
-                        <td>Nike Air Max</td>
-                        <td>42</td>
-                        <td>$120</td>
-                    </tr>
-                    <tr>
-                        <td>2024-12-10</td>
-                        <td>Adidas UltraBoost</td>
-                        <td>40</td>
-                        <td>$140</td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Modelo</th>
+                    <th>Talla</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody id="data-body">
+            </tbody>
+        </table>
+    </div>
     <script>
-            const database = {
-                "nike260": {date:"2024-12-10", model:"Nike sport", size:"40", price:"$150"},
-                "adidas320": {date:"2024-12-10", model:"Adidas color", size:"42", price:"$170"},
-                "puma100": {date:"2024-12-10", model:"Puma simple", size:"39", price:"$100"}
-            }
-            // Get the username in the Localstorage
-            const currentUser = localStorage.getItem('currentUser');
-            if (currentUser) {
-                document.getElementById('current-user').textContent = currentUser;
-            } else {
-                alert("No user logged in. Redirecting to login page.");
-                window.location.href = "login.html";
-            }
+        const database = {
+            "Nike260": {date: "2024-12-10", model: "Nike sport", size: "40", price: "$150"},
+            "adidas320": {date: "2024-12-10", model: "Adidas color", size: "42", price: "$170"},
+            "puma100": {date: "2024-12-10", model: "Puma simple", size: "39", price: "$100"}
+        };
 
-            // Function to get URL parameters
-        function getQueryParam(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
+        // Obtener el usuario actual del localStorage
+        const currentUser = localStorage.getItem('currentUser');
+        if (currentUser) {
+            document.getElementById('current-user').textContent = currentUser;
+        } else {
+            alert("No user logged in. Redirecting to login page.");
+            window.location.href = "login.html";
         }
 
-        // Get the scanned code from the URL
-        const scannedCode = getQueryParam('code');
+        // Obtener el código escaneado desde localStorage
+        const scannedCode = localStorage.getItem("qrCode");
+        console.log(`Scanned Code from LocalStorage: ${scannedCode}`);
 
-        // Check if the scanned code exists in the database
+        // Comprobar si el código existe en la base de datos
+        const dataBody = document.getElementById('data-body');
         if (scannedCode && database[scannedCode]) {
             const item = database[scannedCode];
-            const dataBody = document.getElementById('data-body');
             const row = `<tr>
-                            <td>${item.date}</td>
-                            <td>${item.model}</td>
-                            <td>${item.size}</td>
-                            <td>${item.price}</td>
-                         </tr>`;
-            dataBody.innerHTML += row; // Add the row to the table
+                <td>${item.date}</td>
+                <td>${item.model}</td>
+                <td>${item.size}</td>
+                <td>${item.price}</td>
+             </tr>`;
+            dataBody.innerHTML += row; // Agregar la fila a la tabla
         } else {
-            const dataBody = document.getElementById('data-body');
-            dataBody.innerHTML = `<tr><td colspan="4">No data found for the scanned code.</td></tr>`;
+            // Mostrar mensaje si no hay datos para el código escaneado
+            const noDataRow = `<tr><td colspan="4">No data found for the scanned code.</td></tr>`;
+            dataBody.innerHTML += noDataRow;
         }
     </script>
 </body>
