@@ -1,0 +1,154 @@
+body{
+    background-color: #ff0061;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.centralbox{
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 1150px;
+    height: 550px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+
+/*This is the slider of the pictures*/
+.pictures{
+    width: 50%;
+    height: 100%;
+    border-radius: 10px 0 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.pictures img {
+    width: 100%; 
+    height: 100%;
+    object-fit: cover; 
+}
+
+
+/* In this area I set the logo and the buttons*/
+.option{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 0 10px 10px 0;
+}
+.option img{
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    margin: 50px;
+}
+.option button{
+    background-color: #eebbbb;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 30px;
+    margin: 30px;
+    padding: 10px 30px;
+    cursor: pointer;
+    transition: all 0.3 ease;
+    font-family: monospace;
+}
+.option button:hover{
+    background-color: #ff0061;
+    color: white;
+    transform: scale(1.12);
+}
+
+
+/*This is the Login for the user*/
+.sesion{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 0 10px 10px 0;
+}    
+.sesion img{
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    border-radius: 30px;
+}
+.logintitle{
+    font-size: 30px;
+    color: #ff0061;
+    font-family:Verdana;
+}
+.datos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.nameuser{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.nameuser label{
+    margin-bottom: 10px;
+    color: #ff0061;
+    font-family:Verdana;
+}
+.nameuser input{
+    width: 170px;
+    height: 20px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+}
+.passwuser{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.passwuser label{
+    margin-bottom: 10px;
+    color: #ff0061;
+    font-family:Verdana;
+}
+.passwuser input{
+    margin-bottom: 20px;
+    width: 170px;
+    height: 20px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+}
+.passwuser button{
+    width: 120px;
+    height: 30px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3 ease;
+}
+.passwuser button:hover{
+    background-color: #ff0061;
+    color: white;
+    transform: scale(1.12);
+}

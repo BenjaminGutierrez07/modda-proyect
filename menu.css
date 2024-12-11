@@ -1,0 +1,82 @@
+body{
+    background-color: #ff0061;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.centralbox{
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 1150px;
+    height: 550px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+.containerOne {
+    width: 50%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+}
+.my-shop {
+    font-size: 100px;
+    color:burlywood;
+    cursor: pointer;
+    transition: all 0.3 ease;
+    padding-bottom: 20px;
+}
+.my-shop:hover{
+    background-color: white;
+    color:#ff0061;
+    transform: scale(1.12);
+}
+.containerTwo {
+    width: 50%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+}
+.my-pen {
+    font-size: 100px;
+    color:burlywood;
+    cursor: pointer;
+    transition: all 0.3 ease;
+    padding-bottom: 20px;
+}
+.my-pen:hover{
+    background-color: white;
+    color:#ff0061;
+    transform: scale(1.12);
+}
+.containerThree {
+    width: 50%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+}
+.my-qr {
+    font-size: 100px;
+    color:burlywood;
+    cursor: pointer;
+    transition: all 0.3 ease;
+    padding-bottom: 20px;
+}
+.my-qr:hover{
+    background-color: white;
+    color:#ff0061;
+    transform: scale(1.12);
+}
+

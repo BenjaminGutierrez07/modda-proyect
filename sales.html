@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SALES</title>
+    <link rel="stylesheet" href="sales.css">
+    <script src="login.js" defer></script>
+</head>
+<body>
+        <div class="centralbox">
+            <div class="info">
+                <h2 class="current">Working: <span id="current-user">Loading...</span></h2>
+                <div class="botones">
+                    <button>REGISTER</button>
+                    <button>CLEAR</button>
+                    <button>MANUAL</button>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Modelo</th>
+                        <th>Talla</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2024-12-10</td>
+                        <td>Nike Air Max</td>
+                        <td>42</td>
+                        <td>$120</td>
+                    </tr>
+                    <tr>
+                        <td>2024-12-10</td>
+                        <td>Adidas UltraBoost</td>
+                        <td>40</td>
+                        <td>$140</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    <script>
+            // Recuperar el usuario actual desde localStorage
+            const currentUser = localStorage.getItem('currentUser');
+            if (currentUser) {
+                document.getElementById('current-user').textContent = currentUser;
+            } else {
+                alert("No user logged in. Redirecting to login page.");
+                window.location.href = "login.html";
+            }
+    </script>
+</body>
+</html>
