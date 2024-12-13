@@ -46,26 +46,55 @@
             window.location.href = "login.html";
         }
 
-        // Obtener el código escaneado desde localStorage
-        const scannedCode = localStorage.getItem("qrCode");
-        console.log(`Scanned Code from LocalStorage: ${scannedCode}`);
+        // Inicializar tabla con datos previamente escaneados
+        function initializeTable() {
+            const scannedCodes = JSON.parse(localStorage.getItem("scannedCodes")) || [];
+            const dataBody = document.getElementById('data-body');
 
-        // Comprobar si el código existe en la base de datos
-        const dataBody = document.getElementById('data-body');
-        if (scannedCode && database[scannedCode]) {
-            const item = database[scannedCode];
-            const row = `<tr>
-                <td>${item.date}</td>
-                <td>${item.model}</td>
-                <td>${item.size}</td>
-                <td>${item.price}</td>
-             </tr>`;
-            dataBody.innerHTML += row; // Agregar la fila a la tabla
-        } else {
-            // Mostrar mensaje si no hay datos para el código escaneado
-            const noDataRow = `<tr><td colspan="4">No data found for the scanned code.</td></tr>`;
-            dataBody.innerHTML += noDataRow;
+            scannedCodes.forEach(code => {
+                if (database[code]) {
+                    const item = database[code];
+                    const row = `<tr>
+                        <td>${item.date}</td>
+                        <td>${item.model}</td>
+                        <td>${item.size}</td>
+                        <td>${item.price}</td>
+                    </tr>`;
+                    dataBody.innerHTML += row;
+                }
+            });
         }
+
+        // Escuchar nuevos escaneos
+        function handleNewScan() {
+            const scannedCode = localStorage.getItem("qrCode");
+            if (!scannedCode) return;
+
+            const scannedCodes = JSON.parse(localStorage.getItem("scannedCodes")) || [];
+
+            // Evitar duplicados
+            if (!scannedCodes.includes(scannedCode)) {
+                scannedCodes.push(scannedCode);
+                localStorage.setItem("scannedCodes", JSON.stringify(scannedCodes));
+
+                if (database[scannedCode]) {
+                    const item = database[scannedCode];
+                    const row = `<tr>
+                        <td>${item.date}</td>
+                        <td>${item.model}</td>
+                        <td>${item.size}</td>
+                        <td>${item.price}</td>
+                    </tr>`;
+                    document.getElementById('data-body').innerHTML += row;
+                }
+            }
+        }
+
+        // Inicializar la tabla al cargar la página
+        initializeTable();
+
+        // Detectar cambios en localStorage
+        window.addEventListener('storage', handleNewScan);
     </script>
 </body>
 </html>
