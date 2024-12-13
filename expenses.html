@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXPENSES</title>
+    <link rel="stylesheet" href="expenses.css">
+    <script src="expenses.js" defer></script>
+</head>
+<body>
+    <div class="centralbox">
+        <div class="info">
+            <h2 class="current">Working: <span id="current-user">Loading...</span></h2>
+            <div class="botones">
+                <button>REGISTER</button>
+                <button>CLEAR</button>
+                <button>MANUAL</button>
+            </div>
+        </div>
+        <div class="add">
+            <h2>Date</h2>
+            <input type="date" id="date-input">
+            <h2>Description</h2>
+            <input type="text" id="description-input">
+            <h2>Cost</h2>
+            <input type="number" id="cost-input">
+            <button id="add-btn">ADD</button>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>DATE</th>
+                    <th>DESCRIPTION</th>
+                    <th>EXPENSE</th>
+                </tr>
+            </thead>
+            <tbody id="data-body">
+            </tbody>
+        </table>
+    </div>
+    <script>
+        document.getElementById('add-btn').addEventListener('click', function () {
+    // Obtener los valores de los inputs
+    const date = document.getElementById('date-input').value.trim();
+    const description = document.getElementById('description-input').value.trim();
+    const cost = document.getElementById('cost-input').value.trim();
+
+    // Validar que no estén vacíos
+    if (!date || !description || !cost) {
+        alert('Please fill in all fields.');
+        return;
+    }
+
+    // Crear una nueva fila para la tabla
+    const dataBody = document.getElementById('data-body');
+    const newRow = `<tr>
+                        <td>${date}</td>
+                        <td>${description}</td>
+                        <td>$${parseFloat(cost).toFixed(2)}</td>
+                    </tr>`;
+
+    // Añadir la nueva fila a la tabla
+    dataBody.innerHTML += newRow;
+
+    // Limpiar los inputs
+    document.getElementById('date-input').value = '';
+    document.getElementById('description-input').value = '';
+    document.getElementById('cost-input').value = '';
+});
+    </script>
+</body>
+</html>
